@@ -73,7 +73,9 @@ func clock(c *cli.Context) {
 }
 
 func date(c *cli.Context) {
-	
+  	const layout = "03:04PM"
+  	t := time.Now()
+	say("It is " + t.Format(layout))
 }
 
 func introduce(c *cli.Context) {

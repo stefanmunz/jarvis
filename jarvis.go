@@ -53,12 +53,6 @@ func main() {
       Action: timer,
     },
     {
-      Name:      "timer_finish",
-      ShortName: "tf",
-      Usage:     "informs everyone that the timer has finished",
-      Action: timer_finish,
-    },
-    {
       Name:      "weather",
       ShortName: "w",
       Usage:     "Checks todays weather, e.g. Hamburg, Germany",
@@ -121,12 +115,13 @@ func timer(c *cli.Context) {
       case "hours":
         seconds = count * 60 * 60
     }
-    say("I set your timer to fire in " + strconv.Itoa(seconds) + " seconds")
-  }
-}
 
-func timer_finish(c *cli.Context) {
-  say("Your timer has finished.")
+    say("I set your timer to fire in " + strconv.Itoa(seconds) + " seconds")
+
+	time.Sleep(time.Duration(seconds) * time.Second)
+
+	say("Your timer has finished.")
+  }
 }
 
 func weather(c *cli.Context) {

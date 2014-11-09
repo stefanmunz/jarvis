@@ -121,7 +121,7 @@ func timer(c *cli.Context) {
 }
 
 func timer_finish(c *cli.Context) {
-
+  say("Your timer has finished.")
 }
 
 func weather(c *cli.Context) {

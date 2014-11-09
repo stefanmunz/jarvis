@@ -11,6 +11,7 @@ import (
   "log"
   "strings"
   "strconv"
+  "runtime"
 )
 
 func main() {
@@ -131,5 +132,13 @@ func weather(c *cli.Context) {
 }
 
 func say(text string) {
-  exec.Command("say", text).Run()
+  os := runtime.GOOS
+  switch os {
+    case "linux":
+      exec.Command("tts", text).Run()
+    case "darwin":
+      exec.Command("say", text).Run()
+    default:
+      println(text)
+  }
 }

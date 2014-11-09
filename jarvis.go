@@ -98,7 +98,9 @@ func date(c *cli.Context) {
 }
 
 func introduce(c *cli.Context) {
-
+  say("Hello. My name is Jarvis.")
+  say("I can answer questions, set timers and get the current weather.")
+  say("And I am here to win the contest, of course.")
 }
 
 func timer(c *cli.Context) {

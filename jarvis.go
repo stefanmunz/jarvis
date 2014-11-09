@@ -5,6 +5,10 @@ import (
   "github.com/codegangsta/cli"
   "time"
   "os/exec"
+  "net/http"
+  "net/url"
+  "launchpad.net/xmlpath"
+  "log"
 )
 
 func main() {
@@ -64,6 +68,21 @@ func main() {
 
 func ask(c *cli.Context) {
 	
+  say("Let me look that up for you.")
+  // query wolfram alpha
+  if len(c.Args()) > 0 {
+    url := "http://api.wolframalpha.com/v2/query?input=" + url.QueryEscape(c.Args()[0]) + "&appid=KHJ7LL-XU5JJR9HV9"
+    resp, _ := http.Get(url)
+    defer resp.Body.Close()
+    path := xmlpath.MustCompile("/queryresult/pod[2]/subpod/plaintext")
+    root, err := xmlpath.Parse(resp.Body)
+    if err != nil {
+      log.Fatal(err)
+    }
+    if value, ok := path.String(root); ok {
+      say("Here is what I found: " + value)
+    }
+  }
 }
 
 func clock(c *cli.Context) {

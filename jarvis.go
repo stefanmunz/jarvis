@@ -36,13 +36,13 @@ func main() {
       ShortName: "d",
       Usage:     "tells you the current date",
       Action: date,
-    },     
+    },
     {
       Name:      "introduce",
       ShortName: "i",
       Usage:     "Introduces yourself",
       Action: introduce,
-    },     
+    },
     {
       Name:      "timer",
       ShortName: "t",
@@ -54,20 +54,18 @@ func main() {
       ShortName: "tf",
       Usage:     "informs everyone that the timer has finished",
       Action: timer_finish,
-    },	
+    },
     {
       Name:      "weather",
       ShortName: "w",
       Usage:     "Checks todays weather, e.g. Hamburg, Germany",
       Action: weather,
-    },	
+    },
   }
   app.Run(os.Args)
 }
 
-
 func ask(c *cli.Context) {
-	
   say("Let me look that up for you.")
   // query wolfram alpha
   if len(c.Args()) > 0 {
@@ -98,19 +96,19 @@ func date(c *cli.Context) {
 }
 
 func introduce(c *cli.Context) {
-	
+
 }
 
 func timer(c *cli.Context) {
-	
+
 }
 
 func timer_finish(c *cli.Context) {
-	
+
 }
 
 func weather(c *cli.Context) {
-	
+
 }
 
 

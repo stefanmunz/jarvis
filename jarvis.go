@@ -84,15 +84,15 @@ func ask(c *cli.Context) {
 }
 
 func clock(c *cli.Context) {
-  	const layout = "January 2, 2006"
-  	t := time.Now()
-	say("Today is " + t.UTC().Format(layout))
+  const layout = "03:04PM"
+  t := time.Now()
+  say("It is " + t.Format(layout))
 }
 
 func date(c *cli.Context) {
-  	const layout = "03:04PM"
-  	t := time.Now()
-	say("It is " + t.Format(layout))
+  const layout = "January 2, 2006"
+  t := time.Now()
+  say("Today is " + t.UTC().Format(layout))
 }
 
 func introduce(c *cli.Context) {
@@ -111,8 +111,6 @@ func weather(c *cli.Context) {
 
 }
 
-
-
 func say(text string) {
-	exec.Command("say", text).Run()
+  exec.Command("say", text).Run()
 }

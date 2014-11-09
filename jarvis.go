@@ -128,7 +128,28 @@ func timer_finish(c *cli.Context) {
 }
 
 func weather(c *cli.Context) {
+	text := strings.Join(c.Args(), " ")
+	query := strings.Join(c.Args(), "_")
+    url := "http://api.wunderground.com/api/e0930f07065b7998/conditions/q/" + query + ".xml"
+	response, _ := http.Get(url)
+	defer response.Body.Close()
 
+	response2, _ := http.Get(url)
+	defer response2.Body.Close()
+
+	body := response.Body
+	body2 := response2.Body
+
+    temp_path := xmlpath.MustCompile("/response/current_observation/temp_c")
+    temp_root, _ := xmlpath.Parse(body)
+	temperature, _ := temp_path.String(temp_root)
+
+	desc_path := xmlpath.MustCompile("/response/current_observation/weather")
+    desc_root, _ := xmlpath.Parse(body2)
+	description, _ := desc_path.String(desc_root)
+
+   	string := "It has " + temperature + " degrees in " + text + ", the weather is " + description
+	say(string)
 }
 
 func say(text string) {

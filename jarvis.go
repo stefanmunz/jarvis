@@ -82,7 +82,8 @@ func ask(c *cli.Context) {
       log.Fatal(err)
     }
     if value, ok := path.String(root); ok {
-      say("Here is what I found: " + value)
+      parts := strings.SplitAfter(value, "(")
+      say("Here is what I found: " + parts[0])
     }
   }
 }

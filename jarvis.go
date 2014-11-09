@@ -9,6 +9,8 @@ import (
   "net/url"
   "launchpad.net/xmlpath"
   "log"
+  "strings"
+  "strconv"
 )
 
 func main() {
@@ -100,7 +102,22 @@ func introduce(c *cli.Context) {
 }
 
 func timer(c *cli.Context) {
-
+  if len(c.Args()) > 0 {
+    text := c.Args()[0]
+    arr := strings.Split(text, " ")
+    count, _ := strconv.Atoi(arr[0])
+    unit := arr[1]
+    seconds := 0
+    switch unit {
+      case "seconds":
+        seconds = count
+      case "minutes":
+        seconds = count * 60
+      case "hours":
+        seconds = count * 60 * 60
+    }
+    say("I set your timer to fire in " + strconv.Itoa(seconds) + " seconds")
+  }
 }
 
 func timer_finish(c *cli.Context) {

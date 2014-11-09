@@ -72,7 +72,8 @@ func ask(c *cli.Context) {
   say("Let me look that up for you.")
   // query wolfram alpha
   if len(c.Args()) > 0 {
-    url := "http://api.wolframalpha.com/v2/query?input=" + url.QueryEscape(c.Args()[0]) + "&appid=KHJ7LL-XU5JJR9HV9"
+    text := strings.Join(c.Args(), " ")
+    url := "http://api.wolframalpha.com/v2/query?input=" + url.QueryEscape(text) + "&appid=KHJ7LL-XU5JJR9HV9"
     resp, _ := http.Get(url)
     defer resp.Body.Close()
     path := xmlpath.MustCompile("/queryresult/pod[2]/subpod/plaintext")
